@@ -1,17 +1,10 @@
-import express, {
-  type Application,
-  type Request,
-  type Response,
-} from "express";
+import app from "./app";
+import config from "./utils/config";
 
-const app: Application = express();
+const main = async () => {
+  app.listen(config.port, () => {
+    console.log(`ResolveHQ server running on port ${config.port}`);
+  });
+};
 
-const port = 5000;
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+main()
