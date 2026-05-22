@@ -5,12 +5,35 @@
    const require = createRequire(import.meta.url);
 
   
+"use strict";
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
 
 // src/app.ts
-import express from "express";
+var import_express3 = __toESM(require("express"), 1);
 
 // src/modules/auth/auth.route.ts
-import { Router } from "express";
+var import_express = require("express");
 
 // src/utils/sendResponse.ts
 var sendResponse = (res, statusCode, payload) => {
@@ -19,17 +42,17 @@ var sendResponse = (res, statusCode, payload) => {
 var sendResponse_default = sendResponse;
 
 // src/modules/auth/auth.service.ts
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+var import_bcryptjs = __toESM(require("bcryptjs"), 1);
+var import_jsonwebtoken = __toESM(require("jsonwebtoken"), 1);
 
 // src/db/index.ts
-import { Pool } from "pg";
+var import_pg = require("pg");
 
 // src/utils/config.ts
-import dotenv from "dotenv";
-import path from "path";
-dotenv.config({
-  path: path.join(process.cwd(), ".env")
+var import_dotenv = __toESM(require("dotenv"), 1);
+var import_path = __toESM(require("path"), 1);
+import_dotenv.default.config({
+  path: import_path.default.join(process.cwd(), ".env")
 });
 var config = {
   port: process.env.PORT,
@@ -39,7 +62,7 @@ var config = {
 var config_default = config;
 
 // src/db/index.ts
-var pool = new Pool({
+var pool = new import_pg.Pool({
   connectionString: config_default.connection_string
 });
 var initDB = async () => {
@@ -85,7 +108,7 @@ var initDB = async () => {
 // src/modules/auth/auth.service.ts
 var signUpUserIntoDB = async (payload) => {
   const { name, email, password, role } = payload || {};
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await import_bcryptjs.default.hash(password, 10);
   const result = await pool.query(
     `
     INSERT INTO users(name, email, password, role)
@@ -109,7 +132,7 @@ var loginUserIntoDB = async (payload) => {
     throw new Error("Invalid Credentials");
   }
   const user = userData.rows[0];
-  const passwordValidation = await bcrypt.compare(password, user.password);
+  const passwordValidation = await import_bcryptjs.default.compare(password, user.password);
   if (!passwordValidation) {
     throw new Error("Invalid Credentials");
   }
@@ -119,7 +142,7 @@ var loginUserIntoDB = async (payload) => {
     role: user.role,
     email: user.email
   };
-  const accessToken = jwt.sign(jwtPayload, config_default.jwt_secret, {
+  const accessToken = import_jsonwebtoken.default.sign(jwtPayload, config_default.jwt_secret, {
     expiresIn: "1d"
   });
   delete user.password;
@@ -170,17 +193,17 @@ var authController = {
 };
 
 // src/modules/auth/auth.route.ts
-var router = Router();
+var router = (0, import_express.Router)();
 router.post("/signup", authController.signUpUser);
 router.post("/login", authController.logInUser);
 var authRoute = router;
 
 // src/app.ts
-import CookieParser from "cookie-parser";
-import cors from "cors";
+var import_cookie_parser = __toESM(require("cookie-parser"), 1);
+var import_cors = __toESM(require("cors"), 1);
 
 // src/modules/issues/issues.route.ts
-import { Router as Router2 } from "express";
+var import_express2 = require("express");
 
 // src/modules/issues/issues.service.ts
 var createIssueInDB = async (payload) => {
@@ -428,7 +451,7 @@ var issueController = {
 };
 
 // src/middleware/auth.middleware.ts
-import jwt2 from "jsonwebtoken";
+var import_jsonwebtoken2 = __toESM(require("jsonwebtoken"), 1);
 
 // src/types/index.ts
 var ROLE = {
@@ -447,7 +470,7 @@ var auth = (...roles) => {
           message: "Unauthorized Access!!"
         });
       }
-      const decodedData = jwt2.verify(
+      const decodedData = import_jsonwebtoken2.default.verify(
         token,
         config_default.jwt_secret
       );
@@ -470,7 +493,7 @@ var auth = (...roles) => {
 var auth_middleware_default = auth;
 
 // src/modules/issues/issues.route.ts
-var router2 = Router2();
+var router2 = (0, import_express2.Router)();
 router2.post("/", auth_middleware_default(ROLE.contributor), issueController.createIssue);
 router2.get("/", issueController.getAllIssue);
 router2.get("/:id", issueController.getSingleIssue);
@@ -488,15 +511,15 @@ var globalErrorHandler = (err, req, res, next) => {
 var globalErrorHandler_default = globalErrorHandler;
 
 // src/app.ts
-var app = express();
-app.use(express.json());
-app.use(express.text());
-app.use(express.urlencoded({ extended: true }));
-app.use(CookieParser());
+var app = (0, import_express3.default)();
+app.use(import_express3.default.json());
+app.use(import_express3.default.text());
+app.use(import_express3.default.urlencoded({ extended: true }));
+app.use((0, import_cookie_parser.default)());
 var corsOptions = {
   origin: ["http://localhost:5000", "https://resolve-hq-two.vercel.app"]
 };
-app.use(cors(corsOptions));
+app.use((0, import_cors.default)(corsOptions));
 app.get("/", (req, res) => {
   res.send("ResolveHQ Server is running");
 });
@@ -513,4 +536,4 @@ var main = async () => {
   });
 };
 main();
-//# sourceMappingURL=server.js.map
+//# sourceMappingURL=server.cjs.map
