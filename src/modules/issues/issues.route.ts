@@ -8,6 +8,7 @@ const router = Router();
 router.post("/", auth(ROLE.contributor), issueController.createIssue);
 router.get("/", issueController.getAllIssue);
 router.get("/:id", issueController.getSingleIssue);
-router.patch("/:id",auth(), issueController.updateSingleIssue);
+router.patch("/:id", auth(), issueController.updateSingleIssue);
+router.delete("/:id", auth(ROLE.maintainer), issueController.deleteSingleIssue);
 
 export const issueRoute = router;
