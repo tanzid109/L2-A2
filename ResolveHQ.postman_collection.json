@@ -1,0 +1,249 @@
+{
+  "info": {
+    "_postman_id": "a3ba7c4f-5619-453a-9065-7a748d7253b2",
+    "name": "ResolveHQ",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "54894355"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"abc\",\r\n    \"email\": \"abb@abc.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"contributor\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"abb@abc.com\",\r\n  \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Issues",
+      "item": [
+        {
+          "name": "Get all issues",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "",
+                "value": "",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5000/api/issues",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "issues"
+              ],
+              "query": [
+                {
+                  "key": "sort",
+                  "value": "oldest",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "type",
+                  "value": "feature_request",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "status",
+                  "value": "in_progress",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get single issue",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/api/issues/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "issues",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Single Issue",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiJhYmMiLCJyb2xlIjoiY29udHJpYnV0b3IiLCJlbWFpbCI6ImFiYkBhYmMuY29tIiwiaWF0IjoxNzc5NDQyNTI5LCJleHAiOjE3Nzk1Mjg5Mjl9.49SDQJ9cQxQLhHKJU2u04gGwa07I235CY7eN8MIZ2sM",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Updated: Database pool exhaustion fix needed\",\r\n  \"description\": \"Updated description with reproduction steps...\",\r\n  \"type\": \"bug\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/issues/4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "issues",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Issue",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiJhYmMiLCJyb2xlIjoiY29udHJpYnV0b3IiLCJlbWFpbCI6ImFiYkBhYmMuY29tIiwiaWF0IjoxNzc5NDQyNTI5LCJleHAiOjE3Nzk1Mjg5Mjl9.49SDQJ9cQxQLhHKJU2u04gGwa07I235CY7eN8MIZ2sM",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Database connection timeout under load\",\r\n  \"description\": \"Pool exhausts after 50+ concurrent queries, causing 500 errors\",\r\n  \"type\": \"bug\",\r\n  \"status\": \"resolved\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/issues",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "issues"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Issue",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiJhYmMiLCJyb2xlIjoiY29udHJpYnV0b3IiLCJlbWFpbCI6ImFiYkBhYmMuY29tIiwiaWF0IjoxNzc5NDQyNTI5LCJleHAiOjE3Nzk1Mjg5Mjl9.49SDQJ9cQxQLhHKJU2u04gGwa07I235CY7eN8MIZ2sM",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Updated: Database pool exhaustion fix needed\",\r\n  \"description\": \"Updated description with reproduction steps...\",\r\n  \"type\": \"bug\",\r\n  \"status\": \"open\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/api/issues/4",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "api",
+                "issues",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
