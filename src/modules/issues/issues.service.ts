@@ -43,7 +43,33 @@ const getAllIssueFromDB = async (query: IIssueQuery) => {
   return result.rows;
 };
 
+const getSingleIssueFromDB = async (id: string) => {
+  const result = await pool.query(
+    `
+      SELECT 
+      I.id,
+      I.title,
+      I.description,
+      I.type,
+      I.status,
+      JSON_BUILD_OBJECT(
+        'id', U.id,
+        'name', U.name,
+        'role', U.role
+      ) AS reporter,
+      I.created_at,
+      I.updated_at
+    FROM issues I
+    JOIN users U ON U.id = I.reporter_id
+    WHERE I.id = $1
+      `,
+    [id],
+  );
+  return result.rows[0];
+};
+
 export const issueService = {
   createIssueInDB,
   getAllIssueFromDB,
+  getSingleIssueFromDB,
 };
