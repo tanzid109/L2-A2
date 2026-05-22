@@ -6,5 +6,6 @@ import { ROLE } from "../../types";
 const router = Router();
 
 router.post("/", auth(ROLE.contributor), issueController.createIssue);
+router.get("/", issueController.getAllIssue);
 
 export const issueRoute = router;
