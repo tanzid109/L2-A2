@@ -16,7 +16,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"abc\",\r\n    \"email\": \"abb@abc.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"contributor\"\r\n}",
+              "raw": "{\r\n    \"name\": \"tan\",\r\n    \"email\": \"tan@abc.com\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"contributor\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -24,12 +24,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:5000/api/auth/signup",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/auth/signup",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "5000",
               "path": [
                 "api",
                 "auth",
@@ -46,7 +44,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"email\": \"abb@abc.com\",\r\n  \"password\": \"123456\"\r\n}",
+              "raw": "{\r\n  \"email\": \"tan@abc.com\",\r\n  \"password\": \"123456\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -54,12 +52,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:5000/api/auth/login",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/auth/login",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "5000",
               "path": [
                 "api",
                 "auth",
@@ -86,12 +82,10 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:5000/api/issues",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/issues",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "5000",
               "path": [
                 "api",
                 "issues"
@@ -126,16 +120,14 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:5000/api/issues/1",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/issues/8",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "5000",
               "path": [
                 "api",
                 "issues",
-                "1"
+                "8"
               ]
             }
           },
@@ -148,7 +140,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiJhYmMiLCJyb2xlIjoiY29udHJpYnV0b3IiLCJlbWFpbCI6ImFiYkBhYmMuY29tIiwiaWF0IjoxNzc5NDQyNTI5LCJleHAiOjE3Nzk1Mjg5Mjl9.49SDQJ9cQxQLhHKJU2u04gGwa07I235CY7eN8MIZ2sM",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5hbWUiOiJ0YW4iLCJyb2xlIjoiY29udHJpYnV0b3IiLCJlbWFpbCI6InRhbkBhYmMuY29tIiwiaWF0IjoxNzc5NDU4MzE2LCJleHAiOjE3Nzk1NDQ3MTZ9.kvq4Y_l-E8Y6K76RGAUVuz9Mpa9FDRxj1qqYeZX2ZqU",
                 "type": "text"
               }
             ],
@@ -162,16 +154,14 @@
               }
             },
             "url": {
-              "raw": "http://localhost:5000/api/issues/4",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/issues/8",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "5000",
               "path": [
                 "api",
                 "issues",
-                "4"
+                "8"
               ]
             }
           },
@@ -184,13 +174,13 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsIm5hbWUiOiJhYmMiLCJyb2xlIjoiY29udHJpYnV0b3IiLCJlbWFpbCI6ImFiYkBhYmMuY29tIiwiaWF0IjoxNzc5NDQyNTI5LCJleHAiOjE3Nzk1Mjg5Mjl9.49SDQJ9cQxQLhHKJU2u04gGwa07I235CY7eN8MIZ2sM",
+                "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIsIm5hbWUiOiJ0YW4iLCJyb2xlIjoiY29udHJpYnV0b3IiLCJlbWFpbCI6InRhbkBhYmMuY29tIiwiaWF0IjoxNzc5NDU4MzE2LCJleHAiOjE3Nzk1NDQ3MTZ9.kvq4Y_l-E8Y6K76RGAUVuz9Mpa9FDRxj1qqYeZX2ZqU",
                 "type": "text"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n  \"title\": \"Database connection timeout under load\",\r\n  \"description\": \"Pool exhausts after 50+ concurrent queries, causing 500 errors\",\r\n  \"type\": \"bug\",\r\n  \"status\": \"resolved\"\r\n}",
+              "raw": "{\r\n  \"title\": \"Database connection timeout under load\",\r\n  \"description\": \"Pool exhausts after 50+ concurrent queries, causing 500 errors\",\r\n  \"type\": \"bug\",\r\n  \"status\": \"open\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -198,12 +188,10 @@
               }
             },
             "url": {
-              "raw": "http://localhost:5000/api/issues",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/issues",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "5000",
               "path": [
                 "api",
                 "issues"
@@ -228,22 +216,50 @@
               "raw": "{\r\n  \"title\": \"Updated: Database pool exhaustion fix needed\",\r\n  \"description\": \"Updated description with reproduction steps...\",\r\n  \"type\": \"bug\",\r\n  \"status\": \"open\"\r\n}"
             },
             "url": {
-              "raw": "http://localhost:5000/api/issues/4",
-              "protocol": "http",
+              "raw": "{{baseUrl}}/api/issues/8",
               "host": [
-                "localhost"
+                "{{baseUrl}}"
               ],
-              "port": "5000",
               "path": [
                 "api",
                 "issues",
-                "4"
+                "8"
               ]
             }
           },
           "response": []
         }
       ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://resolve-hq-two.vercel.app"
     }
   ]
 }
