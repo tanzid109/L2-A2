@@ -1,10 +1,10 @@
 export const ROLE = {
-  contributor: "contributor ",
+  contributor: "contributor",
   maintainer: "maintainer",
 } as const;
 
 export type STATUS = "open" | "in_progress" | "resolved";
-
+export type ROLES = "contributor" | "maintainer";
 export type ISSUE_TYPE = "bug" | "feature_request";
 
 export interface TResponse<T> {

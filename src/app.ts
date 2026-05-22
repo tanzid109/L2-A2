@@ -5,6 +5,7 @@ import express, {
 } from "express";
 import { authRoute } from "./modules/auth/auth.route";
 import CookieParser from "cookie-parser";
+import { issueRoute } from "./modules/issues/issues.route";
 
 const app: Application = express();
 app.use(express.json());
@@ -16,5 +17,6 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/api/auth", authRoute);
+app.use("/api/issues", issueRoute);
 
 export default app;
