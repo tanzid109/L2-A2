@@ -136,13 +136,13 @@ var signUpUser = async (req, res) => {
     const result = await authService.signUpUserIntoDB(req.body);
     sendResponse_default(res, 201, {
       success: true,
-      message: "User Created Successfully",
+      message: "User created successfully",
       data: result
     });
   } catch (error) {
     sendResponse_default(res, 500, {
       success: false,
-      message: "Something went wrong",
+      message: "Failed to create user account",
       error
     });
   }
@@ -152,13 +152,13 @@ var logInUser = async (req, res) => {
     const result = await authService.loginUserIntoDB(req.body);
     sendResponse_default(res, 200, {
       success: true,
-      message: "Login Successfull",
+      message: "Login successful",
       data: result
     });
   } catch (error) {
     sendResponse_default(res, 401, {
       success: false,
-      message: "Something went wrong",
+      message: "Invalid email or password",
       error
     });
     console.log(error);
@@ -320,13 +320,13 @@ var getAllIssue = async (req, res) => {
     const result = await issueService.getAllIssueFromDB(req.query);
     sendResponse_default(res, 200, {
       success: true,
-      message: "Data fetched Succesfully",
+      message: "Issues retrieved successfully",
       data: result
     });
   } catch (error) {
-    sendResponse_default(res, 401, {
+    sendResponse_default(res, 500, {
       success: false,
-      message: "something went wrong",
+      message: "Failed to retrieve issues",
       error
     });
   }
@@ -338,18 +338,18 @@ var getSingleIssue = async (req, res) => {
     if (!result) {
       return sendResponse_default(res, 404, {
         success: false,
-        message: "Issue Not Found"
+        message: "Issue not found"
       });
     }
     sendResponse_default(res, 200, {
       success: true,
-      message: "Issue fetched Successfully",
+      message: "Issue retrieved successfully",
       data: result
     });
   } catch (error) {
     sendResponse_default(res, 500, {
       success: false,
-      message: "Something went wrong",
+      message: "Failed to retrieve issue",
       error
     });
   }
@@ -374,7 +374,7 @@ var updateSingleIssue = async (req, res) => {
     if (!result) {
       return sendResponse_default(res, 404, {
         success: false,
-        message: "Issue Not Found"
+        message: "Issue not found"
       });
     }
     if (result.unauthorized) {
@@ -385,13 +385,13 @@ var updateSingleIssue = async (req, res) => {
     }
     sendResponse_default(res, 200, {
       success: true,
-      message: "Issue Updated Successfully",
+      message: "Issue updated successfully",
       data: result
     });
   } catch (error) {
     sendResponse_default(res, 500, {
       success: false,
-      message: "Something went wrong",
+      message: "Failed to update issue",
       error
     });
   }
@@ -403,18 +403,18 @@ var deleteSingleIssue = async (req, res) => {
     if (!result) {
       return sendResponse_default(res, 404, {
         success: false,
-        message: "Issue Not Found"
+        message: "Issue not found"
       });
     }
     sendResponse_default(res, 200, {
       success: true,
-      message: "Issue Deleted Successfully",
+      message: "Issue deleted successfully",
       data: result
     });
   } catch (error) {
     sendResponse_default(res, 500, {
       success: false,
-      message: "Something went wrong",
+      message: "Failed to delete issue",
       error
     });
   }
@@ -488,6 +488,7 @@ var globalErrorHandler = (err, req, res, next) => {
 var globalErrorHandler_default = globalErrorHandler;
 
 // src/app.ts
+import path2 from "path";
 var app = express();
 app.use(express.json());
 app.use(express.text());
@@ -498,7 +499,7 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 app.get("/", (req, res) => {
-  res.send("ResolveHQ Server is running");
+  res.sendFile(path2.join(process.cwd(), "index.html"));
 });
 app.use("/api/auth", authRoute);
 app.use("/api/issues", issueRoute);

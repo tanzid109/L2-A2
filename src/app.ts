@@ -8,6 +8,8 @@ import CookieParser from "cookie-parser";
 import cors from "cors";
 import { issueRoute } from "./modules/issues/issues.route";
 import globalErrorHandler from "./middleware/globalErrorHandler";
+import path from "path";
+import { cwd } from "process";
 
 const app: Application = express();
 app.use(express.json());
@@ -20,7 +22,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.get("/", (req: Request, res: Response) => {
-  res.send("ResolveHQ Server is running");
+  res.sendFile(path.join(process.cwd(), "index.html"));
 });
 
 app.use("/api/auth", authRoute);

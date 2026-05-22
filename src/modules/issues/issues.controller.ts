@@ -33,13 +33,13 @@ const getAllIssue = async (req: Request, res: Response) => {
     const result = await issueService.getAllIssueFromDB(req.query);
     sendResponse(res, 200, {
       success: true,
-      message: "Data fetched Succesfully",
+      message: "Issues retrieved successfully",
       data: result,
     });
   } catch (error) {
-    sendResponse(res, 401, {
+    sendResponse(res, 500, {
       success: false,
-      message: "something went wrong",
+      message: "Failed to retrieve issues",
       error,
     });
   }
@@ -52,18 +52,18 @@ const getSingleIssue = async (req: Request, res: Response) => {
     if (!result) {
       return sendResponse(res, 404, {
         success: false,
-        message: "Issue Not Found",
+        message: "Issue not found",
       });
     }
     sendResponse(res, 200, {
       success: true,
-      message: "Issue fetched Successfully",
+      message: "Issue retrieved successfully",
       data: result,
     });
   } catch (error) {
     sendResponse(res, 500, {
       success: false,
-      message: "Something went wrong",
+      message: "Failed to retrieve issue",
       error,
     });
   }
@@ -89,7 +89,7 @@ const updateSingleIssue = async (req: Request, res: Response) => {
     if (!result) {
       return sendResponse(res, 404, {
         success: false,
-        message: "Issue Not Found",
+        message: "Issue not found",
       });
     }
     if (result.unauthorized) {
@@ -101,13 +101,13 @@ const updateSingleIssue = async (req: Request, res: Response) => {
     }
     sendResponse(res, 200, {
       success: true,
-      message: "Issue Updated Successfully",
+      message: "Issue updated successfully",
       data: result,
     });
   } catch (error) {
     sendResponse(res, 500, {
       success: false,
-      message: "Something went wrong",
+      message: "Failed to update issue",
       error,
     });
   }
@@ -120,18 +120,18 @@ const deleteSingleIssue = async (req: Request, res: Response) => {
     if (!result) {
       return sendResponse(res, 404, {
         success: false,
-        message: "Issue Not Found",
+        message: "Issue not found",
       });
     }
     sendResponse(res, 200, {
       success: true,
-      message: "Issue Deleted Successfully",
+      message: "Issue deleted successfully",
       data: result,
     });
   } catch (error) {
     sendResponse(res, 500, {
       success: false,
-      message: "Something went wrong",
+      message: "Failed to delete issue",
       error,
     });
   }

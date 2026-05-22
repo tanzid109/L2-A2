@@ -7,13 +7,13 @@ const signUpUser = async (req: Request, res: Response) => {
     const result = await authService.signUpUserIntoDB(req.body);
     sendResponse(res, 201, {
       success: true,
-      message: "User Created Successfully",
+      message: "User created successfully",
       data: result,
     });
   } catch (error) {
     sendResponse(res, 500, {
       success: false,
-      message: "Something went wrong",
+      message: "Failed to create user account",
       error,
     });
   }
@@ -23,13 +23,13 @@ const logInUser = async (req: Request, res: Response) => {
     const result = await authService.loginUserIntoDB(req.body);
     sendResponse(res, 200, {
       success: true,
-      message: "Login Successfull",
+      message: "Login successful",
       data: result,
     });
   } catch (error) {
     sendResponse(res, 401, {
       success: false,
-      message: "Something went wrong",
+      message: "Invalid email or password",
       error,
     });
     console.log(error);
