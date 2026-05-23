@@ -5,7 +5,7 @@ An issue tracking and management system built with Express.js and PostgreSQL. Tr
 ## 📋 Project Information
 
 - **Project Name:** ResolveHQ
-- **Live URL:** _(To be deployed)_
+- **Live URL:** https://resolve-hq-two.vercel.app
 - **Version:** 1.0.0
 - **Status:** In Development
 
